@@ -1,18 +1,9 @@
-var Schema = {};
+var Schema = {}
+    , config = require('../../config');
 
 Schema.createSchema = function(mongoose) {
     // Set schema entity
-    var RoadSpotSchema = mongoose.Schema({
-        number : {type:Number, required:true, unique:true}
-        , gps: {
-            latitude : {type:Number, required:true},
-            longitude : {type:Number, required:true}
-        }
-        , isOnRoad : {type:Boolean, required:true}
-        , connected: {type:Array, 'default':[]}
-        , created_at: {type: Date, index: {unique: false}, 'default': Date.now}
-        , updated_at: {type: Date, index: {unique: false}, 'default': Date.now}
-    });
+    var RoadSpotSchema = mongoose.Schema( config.DB_MODEL_INFOS.roadSpot);
 
     RoadSpotSchema.static('findAll', function(callback){
         return this.find({}, callback);

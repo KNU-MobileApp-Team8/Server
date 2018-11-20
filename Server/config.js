@@ -11,6 +11,31 @@ module.exports = {
             schemaName:'RoadSpotSchema',
             modelName:'RoadSpotModel'},
     ],
+    DB_MODEL_INFOS: {
+        building: {
+            name: {type: String, required:true}
+            , number: {type: Number, required:true, unique: true}
+            , gps: {
+                latitude : {type:Number, required:true},
+                longitude : {type:Number, required:true}
+            }
+            , colleges: {type: Array, 'default': []}
+            , description: {type: String, 'default':''}
+            , created_at: {type: Date, index: {unique: false}, 'default': Date.now}
+            , updated_at: {type: Date, index: {unique: false}, 'default': Date.now}
+        },
+        roadSpot: {
+            number : {type:Number, required:true, unique:true}
+            , gps: {
+                latitude : {type:Number, required:true},
+                longitude : {type:Number, required:true}
+            }
+            , isOnRoad : {type:Boolean, required:true}
+            , connected: {type:Array, 'default':[]}
+            , created_at: {type: Date, index: {unique: false}, 'default': Date.now}
+            , updated_at: {type: Date, index: {unique: false}, 'default': Date.now}
+        }
+    },
     ROUTE_INFOS: [
         {file:'./Controller/buildingControl', path:'/building/:number', method:'add_building_info', type:'post'},
         {file:'./Controller/buildingControl', path:'/building', method:'get_building_infos', type:'get'},
