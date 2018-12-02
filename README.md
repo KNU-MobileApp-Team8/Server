@@ -9,7 +9,7 @@ NodeJs, MongoDB를 사용하여 구성하였습니다.
 ```bash
 $ cd 'Base directory'
 $ git clone https://github/KNU-MobileApp-Team8
-$ cd server/server
+$ cd Server/Server
 $ npm install --save
 $ node app.js
 ```
