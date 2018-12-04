@@ -3,9 +3,10 @@ var validChecker = require('../validChecker');
 var add_building_info = function(req, res){
     console.log('# API called: Add building information');
     console.log('Headers: ', req.headers);
+    /*
     if( !validChecker.check_content_type_json(req.headers))
         return res.status(400).end();
-
+    */
     // validate building number
     buildingNumber = req.params.number;
     buildingInfo = req.body;
@@ -42,8 +43,8 @@ var get_building_info = function(req, res){
     if (database.db){
         database.buildingModel.find_by_number(buildingNumber, function(err, result){
             if (err){
-                return res.status(500).json({error: 'Error occured in finding building model.'}).end();
                 console.log('Error occured in finding building model.');
+                return res.status(500).json({error: 'Error occured in finding building model.'}).end();
             }
 
             var output = {

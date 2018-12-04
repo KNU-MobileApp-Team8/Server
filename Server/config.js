@@ -1,6 +1,7 @@
 module.exports = {
     SERVER_PORT: 3000,
-    DB_URL: 'mongodb://localhost:27017/local',
+    // DB_URL: 'mongodb://49.236.134.66:27017/moAppDb',
+    DB_URL: 'mongodb://localhost:27017/moAppDb',
     DB_SCHEMAS: [
         {file:'./Schemas/buildingSchema',
             collection: 'building',
@@ -19,8 +20,6 @@ module.exports = {
                 latitude : {type:Number, required:true},
                 longitude : {type:Number, required:true}
             }
-            , colleges: {type: Array, 'default': []}
-            , description: {type: String, 'default':''}
             , created_at: {type: Date, index: {unique: false}, 'default': Date.now}
             , updated_at: {type: Date, index: {unique: false}, 'default': Date.now}
         },
