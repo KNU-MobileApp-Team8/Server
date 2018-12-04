@@ -1,7 +1,6 @@
 # Server
 NodeJs, MongoDB를 사용하여 구성하였습니다.
-<br><BR>관리자 인증방식: 현재 구성중이며, 추후에 업데이트할 예정입니다.
-<br>HOST, PORT: 실제 서버에 실행시킨 후, 업데이트할 예정입니다. 
+
 <hr>
 
 ## How to Start
