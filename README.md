@@ -91,15 +91,13 @@ $ curl -X GET http://HOST:PORT/api/roadspot/10
 |---|---|
 |Name|String|
 |GPS|String|
-|Colleges|Array(String)|
-|Description|String|
 
 ##### Request example
 
 ```bash
 $ curl --header "Content-Type: application/json" \
 --request POST \
---data '{"Name":"공대 9호관", "GPS":"12.34:56.78","Description":"컴퓨터학부, 화학공학과가 사용하는 건물로써~"}' \
+--data '{"Name":"공대 9호관", "GPS":{"latitude":12.345678,"longitude":12.345678}}' \
 http://HOST:PORT/api/building/418
 ```
 
@@ -110,15 +108,13 @@ http://HOST:PORT/api/building/418
 |---|---|
 |Name|String|
 |GPS|String|
-|Colleges|Array(String)|
-|Description|String|
 
 ##### Request Example
 
 ```bash
 $ curl --header "Content-Type: application/json" \
 --request PUT \
---data '{"Name":"융복합관", "GPS":"12.34:56.78","Description":"컴퓨터학부가 2018년 하반기에 새로 이전한 건물로써~"}' \
+--data '{"Name":"융복합관", "GPS":{"latitude":12.345678,"longitude":12.345678}}' \
 http://HOST:PORT/api/building/418
 ```
 
@@ -144,7 +140,7 @@ $ curl -X DELETE http://HOST:PORT/api/building/418
 ```bash
 $ curl --header "Content-Type: application/json" \
 --request POST \
---data '{"GPS":"12.34:56.78","Connected":[1,2,3,4,5]}' \
+--data '{"GPS":{"latitude":12.345678,"longitude":12.345678},"Connected":[1,2,3,4,5]}' \
 http://HOST:PORT/api/roadspot/10
 ```
 
@@ -161,7 +157,7 @@ http://HOST:PORT/api/roadspot/10
 ```bash
 $ curl --header "Content-Type: application/json" \
 --request PUT \
---data '{"GPS":"12.34:56.78", Connected":[1,2,3,4,5,6]}' \
+--data '{"GPS":{"latitude":12.345678,"longitude":12.345678}, Connected":[1,2,3,4,5,6]}' \
 http://HOST:PORT/api/roadspot/10
 ```
 
