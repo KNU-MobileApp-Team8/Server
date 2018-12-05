@@ -8,7 +8,7 @@ var add_roadSpot_info = function(req, res){
 
     var database = req.app.get('database');
     if( database.db) {
-        var roadSpot = new database.roadSpotModel({
+        var roadSpot = new database.RoadSpotModel({
             number : roadSpotInfo.number,
             gps: roadSpotInfo.gps,
             connected: roadSpotInfo.connected
@@ -31,7 +31,7 @@ var get_roadSpot_info = function(req, res){
     roadSpotNumber = req.params.number;
     var database = req.app.get('database');
     if( database.db){
-        database.roadSpotModel.find_by_number( roadSpotNumber, function(err, result){
+        database.RoadSpotModel.find_by_number( roadSpotNumber, function(err, result){
             if(err){
                 return res.status(500).json({error: 'Error occured in find roadSpot model.'}).end();
                 console.log('Error occured in finding roadSpot model.');
@@ -57,7 +57,7 @@ var get_roadSpot_infos = function(req, res){
     // validate roadSpot number
     var database = req.app.get('database');
     if (database.db){
-        database.roadSpotModel.findAll( function(err, result){
+        database.RoadSpotModel.findAll( function(err, result){
             if(err){
                 return res.status(500).json({error: 'Error occured in finding roadSpot model.'}).end();
                 console.log('Error occured in finding roadSpot model.');
@@ -89,7 +89,7 @@ var update_roadSpot_info = function(req, res){
 
     var database = req.app.get('database');
     if( database.db){
-        database.roadSpotModel.update_by_number( roadSpotNumber, function(err, result){
+        database.RoadSpotModel.update_by_number( roadSpotNumber, function(err, result){
             if( err){
                 return res.status(500).json({error: 'Error occured in finding roadSpot model.'}).end();
                 console.log('Error occured in finding roadSpot model.');
@@ -109,7 +109,7 @@ var delete_roadSpot_info = function(req, res){
 
     var database = req.app.get('database');
     if( database.db){
-        database.roadSpotModel.delete_by_number( roadSpotNumber, function(err, result){
+        database.RoadSpotModel.delete_by_number( roadSpotNumber, function(err, result){
             if( err){
                 return res.status(500).json({error: 'Error occured in finding roadSpot model.'}).end();
                 console.log('Error occured in finding roadSpot model.');

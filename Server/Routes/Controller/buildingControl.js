@@ -41,7 +41,7 @@ var get_building_info = function(req, res){
     }
     var database = req.app.get('database');
     if (database.db){
-        database.buildingModel.find_by_number(buildingNumber, function(err, result){
+        database.BuildingModel.find_by_number(buildingNumber, function(err, result){
             if (err){
                 console.log('Error occured in finding building model.');
                 return res.status(500).json({error: 'Error occured in finding building model.'}).end();

@@ -8,9 +8,11 @@ Schema.createSchema = function(mongoose) {
     BuildingSchema.static('findAll', function(callback){
         return this.find({}, callback);
     });
+
     BuildingSchema.static('find_by_number', function(_number, callback){
         return this.find({number:_number}, callback);
     });
+
     BuildingSchema.static('find_by_name', function(_name, callback){
         return this.find({name:_name}, callback);
     });
