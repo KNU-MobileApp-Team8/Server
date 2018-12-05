@@ -46,7 +46,10 @@ var get_building_info = function(req, res){
                 console.log('Error occured in finding building model.');
                 return res.status(500).json({error: 'Error occured in finding building model.'}).end();
             }
-
+            if( result.length != 0) {
+                return res.status(404).json({error: 'There`s no data'}).end();
+                console.log('There`s no data.');
+            }
             var output = {
                 name: result[0]._doc.name,
                 number: result[0]._doc.number,

@@ -26,7 +26,7 @@ var add_roadSpot_info = function(req, res){
 };
 
 var get_roadSpot_info = function(req, res){
-    console.log('# API called: Get roadSpot informations');
+    console.log('# API called: Get a roadSpot information');
 
     // validate roadSpot number
     roadSpotNumber = req.params.number;
@@ -36,6 +36,10 @@ var get_roadSpot_info = function(req, res){
             if(err){
                 return res.status(500).json({error: 'Error occured in find roadSpot model.'}).end();
                 console.log('Error occured in finding roadSpot model.');
+            }
+            if( result.length != 0) {
+                return res.status(404).json({error: 'There`s no data'}).end();
+                console.log('There`s no data.');
             }
 
             var output = {
