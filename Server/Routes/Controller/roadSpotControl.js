@@ -1,6 +1,6 @@
 var add_roadSpot_info = function(req, res){
     console.log('# API called: Add roadSpot information');
-
+    console.log('Headers: ', req.headers);
     // validate roadSpot number
     roadSpotNumber = req.params.number;
     roadSpotInfo = req.body;
@@ -9,9 +9,10 @@ var add_roadSpot_info = function(req, res){
     var database = req.app.get('database');
     if( database.db) {
         var roadSpot = new database.RoadSpotModel({
-            number : roadSpotInfo.number,
+            number : roadSpotNumber,
             gps: roadSpotInfo.gps,
-            connected: roadSpotInfo.connected
+            connected: roadSpotInfo.connected,
+            isOnRoad: roadSpotInfo.isOnRoad
         });
         roadSpot.save( function(err){
             if(err) return res.status(500).json({error: 'Error occured in creating data model.'}).end();
