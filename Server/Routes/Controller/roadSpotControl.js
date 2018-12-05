@@ -39,9 +39,9 @@ var get_roadSpot_info = function(req, res){
             }
 
             var output = {
-                number: result.number,
-                gps: result.gps,
-                connected : result.connected
+                number: result[0]._doc.number,
+                gps: result[0]._doc.gps,
+                connected : result[0]._doc.connected
             };
 
             return res.status(200).json({'data' : output}).end();

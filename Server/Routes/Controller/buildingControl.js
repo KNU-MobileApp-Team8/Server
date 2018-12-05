@@ -48,14 +48,17 @@ var get_building_info = function(req, res){
             }
 
             var output = {
-                name: result.name,
-                number: result.number,
-                gps: result.gps,
-                description: result.description
+                name: result[0]._doc.name,
+                number: result[0]._doc.number,
+                gps: result[0]._doc.gps,
+                description: result[0]._doc.description
             };
 
             return res.status(200).json({'data' : output}).end();
         });
+    }
+    else {
+        res.status(500).json({error: 'Error occurred in load database'}).end();
     }
 };
 
