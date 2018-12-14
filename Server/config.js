@@ -47,6 +47,8 @@ module.exports = {
         {file:'./Controller/roadSpotControl', path:'/roadspot', method:'get_roadSpot_infos', type:'get'},
         {file:'./Controller/roadSpotControl', path:'/roadspot/:number', method:'get_roadSpot_info', type:'get'},
         {file:'./Controller/roadSpotControl', path:'/roadspot/:number', method:'update_roadSpot_info', type:'put'},
-        {file:'./Controller/roadSpotControl', path:'/roadspot/:number', method:'delete_roadSpot_info', type:'delete'}
+        {file:'./Controller/roadSpotControl', path:'/roadspot/:number', method:'delete_roadSpot_info', type:'delete'},
+
+        {file:'./Controller/imageControl', path:'/images/:number', method: 'get_image', type:'get'}
     ]
 }

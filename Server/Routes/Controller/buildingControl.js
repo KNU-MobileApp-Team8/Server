@@ -33,6 +33,7 @@ var add_building_info = function(req, res){
 
 var get_building_info = function(req, res){
     console.log('# API called: Get a building information');
+    console.log('Headers: ', req.headers);
 
     // validate building number
     buildingNumber = req.params.number;
@@ -68,6 +69,7 @@ var get_building_info = function(req, res){
 
 var get_building_infos = function(req, res){
     console.log('# API called: Get building informations');
+    console.log('Headers: ', req.headers);
 
     var database = req.app.get('database');
     if (database.db){
@@ -101,6 +103,7 @@ var get_building_infos = function(req, res){
 
 var update_building_info = function(req, res){
     console.log('# API called: Update building information');
+    console.log('Headers: ', req.headers);
 
     // validate building number
     buildingNumber = req.params.number;
