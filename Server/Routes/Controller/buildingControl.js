@@ -55,7 +55,7 @@ var get_building_info = function(req, res){
                 name: result[0]._doc.name,
                 number: result[0]._doc.number,
                 gps: result[0]._doc.gps,
-                imageUrl: config.HOST + '/MobileAppImages/' + result[0]._doc.number +'.png',
+                imageUrl: config.HOST + '/Images/' + result[0]._doc.number,
                 description: result[0]._doc.description
             };
 
@@ -89,6 +89,7 @@ var get_building_infos = function(req, res){
                     name: curName,
                     number: curNumber,
                     gps: curGps,
+                    imageUrl: config.HOST + '/Images/' + curNumber,
                     description: curDescription
                 });
             }
