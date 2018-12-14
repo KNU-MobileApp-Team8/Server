@@ -54,6 +54,7 @@ var get_building_info = function(req, res){
                 name: result[0]._doc.name,
                 number: result[0]._doc.number,
                 gps: result[0]._doc.gps,
+                imageUrl: config.HOST + '/MobileAppImages/' + result[0]._doc.number +'.png',
                 description: result[0]._doc.description
             };
 

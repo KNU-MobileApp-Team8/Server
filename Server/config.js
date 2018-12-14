@@ -1,5 +1,6 @@
 module.exports = {
     SERVER_PORT: 3389,
+    HOST: 'http://49.236.134.66',
     // DB_URL: 'mongodb://49.236.134.66:27017/moAppDb',
     DB_URL: 'mongodb://localhost:27017/moAppDb',
     DB_SCHEMAS: [
