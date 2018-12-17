@@ -14,12 +14,12 @@ Schema.createSchema = function(mongoose) {
     RoadSpotSchema.static('update_by_number', function(_number, _data, callback){
         var _query = {'number': _number};
         var _new_values = { $set: {
-                'number': _number
+                'number:': _number
                 , 'gps' : _data.gps
                 , 'connected': _data.connected
                 , 'updated_at': Date.now
             }};
-        return this.updateOne( _query, _new_values, callback);
+        return this.update( _query, _new_values, callback);
     });
     RoadSpotSchema.static('delete_by_number', function(_number, callback){
         return this.deleteOne( {number: _number}, callback);

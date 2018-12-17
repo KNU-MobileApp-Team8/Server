@@ -15,6 +15,7 @@ var databaseLoader = require('./Database/databaseLoader');
 
 var config = require('./config');
 var jayson = require('jayson');
+var pathManager = require('./pathManager');
 
 console.log('#Load all middle wares.');
 /* Construct Server */
@@ -60,7 +61,16 @@ app.on('close', function () {
     }
 });
 
+
 var server = http.createServer(app).listen(app.get('port'), function(){
-    console.log('\n#Server start. Port: %d', app.get('port'));
-    databaseLoader.init(app, config);
+    console.log('\n# Server start. Port: %d', app.get('port'));
+    databaseLoader.init(app, config, function(err){
+        if( err){
+            console.log('# Error occurred in loading database');
+            app.close();
+        }
+
+        pathManager.initialize(app);
+        app.set('pathManager', pathManager);
+    });
 });

@@ -1,12 +1,12 @@
 var mongoose = require('mongoose');
 var databaseLoader = {};
 
-databaseLoader.init = function(app, config){
+databaseLoader.init = function(app, config, callback){
     console.log('# Initialize the database.');
-    connect_database(app, config);
+    connect_database(app, config, callback);
 }
 
-function connect_database(app, config){
+function connect_database(app, config, callback){
     console.log('# Called connect().');
 
     mongoose.Promise = global.Promise;
@@ -18,11 +18,13 @@ function connect_database(app, config){
     databaseLoader.db.on('open', function(){
         console.log('# Connected with database: ', config.DB_URL);
         init_schema(app, config);
+        callback(null);
     });
 
     databaseLoader.db.on('disconnected', function(){
         console.log('# Disconnected with database. Retry after 5sec.');
         setInterval(connect_database, 5000);
+        callback(true);
     });
 }
 

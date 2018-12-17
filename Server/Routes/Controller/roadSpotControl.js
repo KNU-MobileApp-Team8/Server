@@ -90,11 +90,16 @@ var get_roadSpot_infos = function(req, res){
 var update_roadSpot_info = function(req, res){
     console.log('# API called: Update roadSpot information');
 
-    roadSpotNumber = req.params.number;
-
+    var roadSpotNumber = req.params.number;
+    var data = {
+        'number' : roadSpotNumber,
+        'gps': req.body.gps,
+        'connected': req.body.connected
+    };
+    console.log('New data: ', data);
     var database = req.app.get('database');
     if( database.db){
-        database.RoadSpotModel.update_by_number( roadSpotNumber, function(err, result){
+        database.RoadSpotModel.update_by_number( roadSpotNumber, data, function(err, result){
             if( err){
                 return res.status(500).json({error: 'Error occured in finding roadSpot model.'}).end();
                 console.log('Error occured in finding roadSpot model.');

@@ -6,7 +6,7 @@ var get_image = function(req, res){
 
     buildingNumber = req.params.number;
 
-    var img = fs.readFileSync('./Images/' + buildingNumber + '.png');
+    var img = fs.readFileSync('./Images/' + buildingNumber + '.PNG');
     res.writeHead(200, {'Content-Type': 'image/png' });
     res.end(img, 'binary');
 }
