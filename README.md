@@ -75,15 +75,22 @@ $ curl -X GET http://HOST:PORT/api/roadspot/10
 
 ### Path: /api/path?from={:roadSpotNumber}&to={:buildingNumber}
 #### 1. GET : 특정 분기점과 도착 건물에 대한 경로 정보 요청
+##### Request example
 
 ```bash
 $ curl - X GET http://HOST:PORT/api/path?from=1001&to=501
 ```
 
+### Path: /api/image/:number
+#### 1. GET : 특정 건물 안내 이미지 요청
+##### Request example
+
+```bash
+$ curl - X GET http://HOST:PORT/api/image/404
+```
+
 ##### Response( Success의 경우)
-|<center>Name</center>|<center>Type</center>|
-|---|---|
-|Path|Array(Integer)|
+Building information Image
 
 ### Status Code
 #### 2XX: 성공
