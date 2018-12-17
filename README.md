@@ -6,12 +6,14 @@ NodeJs, MongoDB를 사용하여 구성하였습니다.
 ## How to Start
 
 ```bash
-$ cd 'Base directory'
+$ cd [Base directory]
 $ git clone https://github.com/KNU-MobileApp-Team8/Server.git
 $ cd Server/Server
 $ npm install --save
+$ mongodb --dbpath [Database directory]
 $ node app.js
 ```
+
 # API references
 예시로 사용되는 curl은 아래 링크에서 다운로드 받으실 수 있습니다.
 
@@ -19,7 +21,7 @@ https://curl.haxx.se/download.html
 
 ## All User (Client)
 ### Path: /api/building
-#### 1. GET : 교내 모든 건물들의 정보를 읽어들임
+#### 1. GET : 교내 모든 건물들의 정보 요청
 ##### Request example
 
 ```bash
@@ -32,7 +34,7 @@ $ curl -X GET http://HOST:PORT/api/building
 |---|---|
 |Buildings|Array(Json)|
 
-#### 2. GET : 교내 특정 건물의 정보를 읽어들임(Path : /api/building/:number)
+#### 2. GET : 교내 특정 건물의 정보 요청(Path : /api/building/:number)
 ##### Request example
 
 ```bash
@@ -45,7 +47,7 @@ $ curl -X GET http://HOST:PORT/api/building/400
 |Building|Json|
 
 ### Path: /api/roadspot
-#### 1. GET : 교내 모든 경로들의 정보를 읽어들임
+#### 1. GET : 교내 모든 경로들의 정보 요청
 
 ##### Request example
 
@@ -59,7 +61,7 @@ $ curl -X GET http://HOST:PORT/api/roadspot
 |---|---|
 |RoadSpots|Array(Json)|
 
-#### 2. GET : 교내 특정 경로의 정보를 읽어들임(Path : /api/roadspot/:number)
+#### 2. GET : 교내 특정 경로의 정보 요청(Path : /api/roadspot/:number)
 ##### Request example
 
 ```bash
@@ -71,102 +73,17 @@ $ curl -X GET http://HOST:PORT/api/roadspot/10
 |---|---|
 |RoadSpot|Json|
 
-### Status Code
+### Path: /api/path?from={:roadSpotNumber}&to={:buildingNumber}
+#### 1. GET : 특정 분기점과 도착 건물에 대한 경로 정보 요청
 
-|<center>Code</center>|<center>Description</center>|
+```bash
+$ curl - X GET http://HOST:PORT/api/path?from=1001&to=501
+```
+
+##### Response( Success의 경우)
+|<center>Name</center>|<center>Type</center>|
 |---|---|
-|200|Success|
-|400|Insufficient or incorrect parameters|
-|404|No data in server|
-|500|Server error|
-
-
-## Administer( 일반 사용자의 GET API를 포함합니다.)
-### Path: /api/building/:number
-#### 1. POST : 하나의 교내 건물의 정보를 등록
-##### Request
-
-|<center>Data</center>|<center>Type</center>|
-|---|---|
-|Name|String|
-|GPS|String|
-
-##### Request example
-
-```bash
-$ curl --header "Content-Type: application/json" \
---request POST \
---data '{"Name":"공대 9호관", "GPS":{"latitude":12.345678,"longitude":12.345678}}' \
-http://HOST:PORT/api/building/418
-```
-
-#### 2. PUT : 하나의 교내 건물의 정보를 수정
-##### Request
-
-|<center>Data</center>|<center>Type</center>|
-|---|---|
-|Name|String|
-|GPS|String|
-
-##### Request Example
-
-```bash
-$ curl --header "Content-Type: application/json" \
---request PUT \
---data '{"Name":"융복합관", "GPS":{"latitude":12.345678,"longitude":12.345678}}' \
-http://HOST:PORT/api/building/418
-```
-
-#### 3. DELETE : 하나의 교내 건물의 정보를 삭제
-
-##### Request example
-
-```bash
-$ curl -X DELETE http://HOST:PORT/api/building/418
-```
-
-### Path: /api/roadspot/:number
-#### 1. POST : 하나의 교내 분기점의 정보를 등록
-##### Request
-
-|<center>Data</center>|<center>Type</center>|
-|---|---|
-|GPS|String|
-|Connected|Array(Integer)|
-
-##### Request example
-
-```bash
-$ curl --header "Content-Type: application/json" \
---request POST \
---data '{"GPS":{"latitude":12.345678,"longitude":12.345678},"Connected":[1,2,3,4,5]}' \
-http://HOST:PORT/api/roadspot/10
-```
-
-#### 2. PUT : 하나의 교내 분기점의 정보를 수정
-##### Request
-
-|<center>Data</center>|<center>Type</center>|
-|---|---|
-|GPS|String|
-|Connected|Array(Integer)|
-
-##### Request example
-
-```bash
-$ curl --header "Content-Type: application/json" \
---request PUT \
---data '{"GPS":{"latitude":12.345678,"longitude":12.345678}, Connected":[1,2,3,4,5,6]}' \
-http://HOST:PORT/api/roadspot/10
-```
-
-#### 3. DELETE : 하나의 교내 의 정보를 삭제
-
-##### Request example
-
-```bash
-$ curl -X DELETE http://HOST:PORT/api/roadspot/10
-```
+|Path|Array(Integer)|
 
 ### Status Code
 #### 2XX: 성공
@@ -174,15 +91,12 @@ $ curl -X DELETE http://HOST:PORT/api/roadspot/10
 |<center>Code</center>|<center>Description</center>|
 |---|---|
 |200|Success|
-|201|Successfully create data(POST)|
-|204|Successfully delete data(DELETE)|
 
 #### 4XX: 클라이언트 요청 에러
 
 |<center>Code</center>|<center>Description</center>|
 |---|---|
 |400|Insufficient or incorrect parameters|
-|401|Unauthorized|
 |404|No data in server|
 |409|Conflict|
 
